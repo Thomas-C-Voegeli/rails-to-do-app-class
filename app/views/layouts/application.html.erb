@@ -7,6 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<% if !flash.now[:error].nil? %>
+  <div class="flash-error-area">
+  <% flash.each do |name, msg| %>
+    <p><%= content_tag :div, msg, class: name %></p>
+    </div>
+  <% end %>
+<% end %>
 
 <%= yield %>
 

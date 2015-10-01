@@ -1,0 +1,24 @@
+<h1>Index Page</h1>
+
+<% @tasks.each do |task| %>
+	<li><%= task.description %></li>
+	<%= link_to 'X', task_path(task), method: 'delete' %>
+	<% if task.completed == false %>
+		<%= link_to 'O', task_path(task), method: 'patch' %>
+	<% else %>
+		<%= link_to 'Ø', task_path(task), method: 'patch' %>
+	<% end %>
+<% end %>
+
+<%= form_for @task do |f| %>
+
+  <%= f.text_field :description, :placeholder => "What needs to get done?" %><br />
+
+  <%= f.submit %>
+  <%= link_to 'completed', completed_tasks_path %>
+  <%= link_to 'active', active_tasks_path %>
+  <%= link_to 'all', root_path %>
+  <% if Task.completed != [] %>
+  	<%= link_to 'clear completed', destroy_completed_tasks_path, method: 'post' %>
+  <% end %>
+<% end %>

@@ -1,14 +1,19 @@
 <h1>Index Page</h1>
 
+<ul class="list">
 <% @tasks.each do |task| %>
-	<li><%= task.description %></li>
-	<%= link_to 'X', task_path(task), method: 'delete' %>
+	<li id="<%= task.id %>"><%= task.description %>
+	<%= link_to 'X', task_path(task), method: 'delete'%>
+  <div class="<%= task.id %>">
 	<% if task.completed == false %>
-		<%= link_to 'O', task_path(task), method: 'patch' %>
+		<%= link_to 'O', task_path(task), method: 'patch'%>
 	<% else %>
-		<%= link_to 'Ø', task_path(task), method: 'patch' %>
+		<%= link_to 'Ø', task_path(task), method: 'patch'%>
 	<% end %>
+  </div>
+  </li>
 <% end %>
+</ul>
 
 <%= form_for @task do |f| %>
 

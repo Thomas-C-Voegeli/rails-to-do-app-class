@@ -1,0 +1,9 @@
+
+  <li><%= @task.description %>
+	<%= link_to 'X', task_path(@task), method: 'delete' %>
+	<% if @task.completed == false %>
+		<%= link_to 'O', task_path(@task), method: 'patch', remote: true %>
+	<% else %>
+		<%= link_to 'Ø', task_path(@task), method: 'patch' %>
+	<% end %>
+  </li>

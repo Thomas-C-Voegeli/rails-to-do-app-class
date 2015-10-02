@@ -10,12 +10,8 @@ class TasksController < ApplicationController
 		@tasks = Task.all
 		@task = Task.new(task_params)
     	if @task.save
-      		redirect_to root_path 
-   		else
-   			@tasks = Task.all
-   			flash.now[:error] = "description must be at least 6 characters in length"
-      		render 'index'
-    	end
+      		render @task 
+   		end
 	end
 
 	def update
@@ -43,7 +39,6 @@ class TasksController < ApplicationController
 	end
 
 	def destroy_completed
-		p "*" * 100
 		@tasks = Task.completed
 		@tasks.each do |task|
 			task.destroy
